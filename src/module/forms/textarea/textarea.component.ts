@@ -23,11 +23,13 @@ export class AmexioTextAreaComponent implements ControlValueAccessor {
 
   @Input() columns: number;
 
-  @Input('allow-blank') allowblank: string;
+  @Input('allow-blank') allowblank: boolean;
 
   helpInfoMsg: string;
 
   regEx: RegExp;
+
+  isComponentValid : boolean;
 
   showToolTip: boolean;
 
@@ -100,7 +102,10 @@ export class AmexioTextAreaComponent implements ControlValueAccessor {
   constructor() {
     this.showToolTip = false;
   }
-
+  ngOnInit() {
+    this.isComponentValid = this.allowblank;
+  }
+    
   // The internal dataviews model
   private innerValue: any = '';
 
@@ -151,8 +156,10 @@ export class AmexioTextAreaComponent implements ControlValueAccessor {
 
   getValidationClasses(inp: any): any {
     let classObj;
+
     if (inp.touched && !this.allowblank && (this.value == '' || this.value == null)) {
       classObj = {'input-control-error': true};
+      //this.helpInfoMsg = this.helpInfoMsg + 'This field is manditory ! ';
       this.isValid = false;
     } else {
       classObj = {
@@ -164,6 +171,11 @@ export class AmexioTextAreaComponent implements ControlValueAccessor {
     return classObj;
   }
 
+  onInput(input:any) {
+    this.isComponentValid = input.valid;
+    //this.input.emit(this.value);
+  }
+        
 }
 
 

@@ -1,6 +1,12 @@
 /**
  * Created by pratik on 20/12/17.
  */
+
+ /*
+ Component Name : Amexio Tag Input
+ Component Selector :  <amexio-tag-input>
+ Component Description : Tags based multi input with typeahead facility.
+*/
 import {
   Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, Renderer2,
   ViewChild
@@ -15,7 +21,7 @@ import {CommonDataService} from "../../services/data/common.data.service";
 export class AmexioTagsInputComponent implements OnInit {
   @Input('field-label') fieldlabel: string;
 
-  @Input('allow-blank') allowblank: string;
+  @Input('allow-blank') allowblank: boolean;
 
   @Input() data: any;
 
@@ -28,6 +34,8 @@ export class AmexioTagsInputComponent implements OnInit {
   @Input('display-field') displayfield: string;
 
   @Input('value-field') valuefield: string;
+
+  @Output() input: any = new EventEmitter<any>();
 
   @Output() onChange: EventEmitter<any> = new EventEmitter<any>();
 
@@ -106,6 +114,7 @@ export class AmexioTagsInputComponent implements OnInit {
 
   @ViewChild('dropdownitems', {read: ElementRef}) public dropdownitems: ElementRef;
 
+  isComponentValid : boolean;
 
   maskloader:boolean=true;
 
@@ -114,6 +123,8 @@ export class AmexioTagsInputComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isComponentValid = this.allowblank;
+
     if (this.placeholder == '' || this.placeholder == null) this.placeholder = 'Choose Option';
 
     if (!this.triggerchar) {
@@ -247,8 +258,14 @@ export class AmexioTagsInputComponent implements OnInit {
     this.value = row[this.valuefield];
     this.displayValue = row[this.displayfield];
     this.showToolTip = false;
+   
   }
 
+  onInput(input : any) {
+      this.input.emit();
+      
+  }
+    
   // The internal dataviews model
   private innerValue: any = '';
 
@@ -313,6 +330,9 @@ export class AmexioTagsInputComponent implements OnInit {
     this.inpHandle.nativeElement.value = '';
     this.onSelections.push(value);
     this.onChange.emit(this.onSelections);
+    if(this.onSelections.length > 0) {
+      this.isComponentValid = true;
+    }
     this.showToolTip = false;
 
   }
@@ -323,6 +343,9 @@ export class AmexioTagsInputComponent implements OnInit {
       if (selectedVal == item) indexToRemove = index;
     });
     this.onSelections.splice(indexToRemove, 1);
+    if(this.onSelections.length == 0) {
+      this.isComponentValid = false;
+    }
     this.onChange.emit(this.onSelections);
   }
 

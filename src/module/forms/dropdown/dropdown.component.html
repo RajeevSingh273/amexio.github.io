@@ -1,7 +1,7 @@
 <div class="inputgroup" #rootDiv>
 
   <label [style.font-style]="fontstyle" [style.font-family]="fontfamily" [style.font-size]="fontsize">
-    {{fieldlabel}}
+    {{fieldlabel}} 
   </label>
 
   <input type="hidden"
@@ -16,10 +16,12 @@
          (blur)="onblur()"
          (click)="onDropDownClick($event)"
          (focus)="onFocus(rootDiv)"
-         (input)="onInput()"
+         (input)="onInput(inp)"
          [attr.placeholder]="placeholder"
          [attr.disabled]="disabled ? true: null"
-         [required]="allowblank ? true: null" (keyup)="onDropDownSearchKeyUp($event)" (keydown)="navigateKey($event)"/>
+         [required]="!allowblank" 
+         (keyup)="onDropDownSearchKeyUp($event)" 
+         (keydown)="navigateKey($event)"/>
 
 
   <span class="drodown-caret-down" (click)="onIconClick()">

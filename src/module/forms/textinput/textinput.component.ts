@@ -25,7 +25,7 @@ export class AmexioTextInputComponent implements ControlValueAccessor {
 
   @Input('max-length') maxlength: number;
 
-  @Input('allow-blank') allowblank: string;
+  @Input('allow-blank') allowblank: boolean;
 
   helpInfoMsg: string;
 
@@ -81,19 +81,15 @@ export class AmexioTextInputComponent implements ControlValueAccessor {
 
   @Input('has-label') haslabel: boolean = true;
 
-
   _pattern: string;
 
   get pattern(): string {
     return this._pattern;
   }
-  
   @Input('pattern')
   set pattern(value: string) {
-    if (value != null) {
-      this._pattern = value;
-      this.regEx = new RegExp(this._pattern);
-    }
+    this._pattern = value;
+    if (value != null) this.regEx = new RegExp(this.pattern);
   }
 
   @Input('enable-popover') enablepopover: boolean;
@@ -101,6 +97,8 @@ export class AmexioTextInputComponent implements ControlValueAccessor {
   regex: RegExp;
 
   isValid: boolean;
+
+  isComponentValid : boolean;
 
   @ViewChild('ref', {read: ElementRef}) public inputRef: ElementRef;
 
@@ -117,6 +115,7 @@ export class AmexioTextInputComponent implements ControlValueAccessor {
   }
 
   ngOnInit() {
+    this.isComponentValid = this.allowblank;
   }
 
   // The internal dataviews model
@@ -157,7 +156,8 @@ export class AmexioTextInputComponent implements ControlValueAccessor {
     this.focus.emit(this.value);
   }
 
-  onInput() {
+  onInput(input:any) {
+    this.isComponentValid = input.valid;
     this.input.emit(this.value);
   }
 
@@ -186,6 +186,7 @@ export class AmexioTextInputComponent implements ControlValueAccessor {
     let classObj;
     if (inp.touched && !this.allowblank && (this.value == '' || this.value == null)) {
       classObj = {'input-control-error': true};
+      //this.helpInfoMsg = this.helpInfoMsg + 'This field is manditory ! ';
       this.isValid = false;
     } else if (inp.touched && this.minlength != null) {
       if (this.value && (this.value.length < this.minlength)) {
@@ -205,6 +206,5 @@ export class AmexioTextInputComponent implements ControlValueAccessor {
   }
 
 }
-
 
 
