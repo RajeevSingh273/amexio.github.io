@@ -118,7 +118,7 @@ description : Allow Drop Zone For Files.
   responseData:any;
 /*
 Events
-name : onBlur
+name : blur
 datatype : any
 version : 4.0 onwards
 default : none

@@ -19,26 +19,104 @@ import {CommonDataService} from "../../services/data/common.data.service";
 })
 
 export class AmexioTagsInputComponent implements OnInit {
+     /*
+Properties 
+name : field-label
+datatype : string
+version : 4.0 onwards
+default : none 
+description : The label of this field
+*/
   @Input('field-label') fieldlabel: string;
-
+  /*
+Properties 
+name : allow-blank
+datatype : string
+version : 4.0 onwards
+default : none 
+description : sets if field is required
+*/
   @Input('allow-blank') allowblank: boolean;
-
+   /*
+Properties 
+name : data
+datatype : string
+version : 4.0 onwards
+default : none 
+description : input data source
+*/
   @Input() data: any;
-
+ /*
+Properties 
+name : data-reader
+datatype : string
+version : 4.0 onwards
+default : none 
+description : Key in JSON datasource for records
+*/
   @Input('data-reader') datareader: string;
-
+/*
+Properties 
+name : http-method
+datatype : string
+version : 4.0 onwards
+default : none 
+description : Type of HTTP call, POST,GET.
+*/
   @Input('http-method') httpmethod: string;
-
+ /*
+Properties 
+name : http-url
+datatype : string
+version : 4.0 onwards
+default : none 
+description : REST url for fetching datasource.
+*/ 
   @Input('http-url') httpurl: string;
-
+   /*
+Properties 
+name : display-field
+datatype : string
+version : 4.0 onwards
+default : none 
+description : Name of key inside response data to display on ui.
+*/ 
   @Input('display-field') displayfield: string;
-
+   /*
+Properties 
+name : value-field
+datatype : string
+version : 4.0 onwards
+default : none 
+description : Name of key inside response data.use to send to backend
+*/ 
   @Input('value-field') valuefield: string;
-
+ /*
+Events
+name : input
+datatype : any
+version : none
+default : none
+description : 	On input event field.
+*/ 
   @Output() input: any = new EventEmitter<any>();
-
+  /*
+Events
+name : onChange
+datatype : any
+version : none
+default : none
+description : on change event
+*/ 
   @Output() onChange: EventEmitter<any> = new EventEmitter<any>();
-
+  /*
+Events
+name : focus
+datatype : any
+version : none
+default : none
+description : On field focus event
+*/ 
   @Output() focus: any = new EventEmitter<any>();
 
   @HostListener('document:click', ['$event.target']) @HostListener('document: touchstart', ['$event.target'])
@@ -87,13 +165,41 @@ export class AmexioTagsInputComponent implements OnInit {
   @Input() disabled: boolean;
 
   @Input('icon-feedback') iconfeedback: boolean;
-
+  /*
+Properties 
+name : font-style
+datatype : string
+version : 4.0 onwards
+default : none 
+description : Set font-style to field
+*/
   @Input('font-style') fontstyle: string;
-
+  /*
+Properties 
+name : font-family
+datatype : string
+version : 4.0 onwards
+default : none 
+description : Set font-family to field
+*/
   @Input('font-family') fontfamily: string;
-
+  /*
+Properties 
+name : font-size
+datatype : string
+version : 4.0 onwards
+default : none 
+description : Set font-size to field
+*/
   @Input('font-size') fontsize: string;
-
+  /*
+Properties 
+name : enable-popover
+datatype : string
+version : 4.0 onwards
+default : none 
+description : Set enable / disable popover.
+*/
   @Input('enable-popover') enablepopover: boolean;
 
   responseData: any;
@@ -103,9 +209,23 @@ export class AmexioTagsInputComponent implements OnInit {
   viewData: any;
 
   filteredResult: any;
-
+  /*
+Properties 
+name : key
+datatype : string
+version : 4.0 onwards
+default : none 
+description : key as input to tags
+*/
   @Input() key: any;
-
+  /*
+Properties 
+name : trigger-char
+datatype : number
+version : 4.0 onwards
+default : none 
+description : sets the trigger char length
+*/
   @Input('trigger-char') triggerchar: number;
 
   @ViewChild('inp') inpHandle: any;

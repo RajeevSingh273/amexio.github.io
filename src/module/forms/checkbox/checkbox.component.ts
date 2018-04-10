@@ -47,12 +47,12 @@ description :  If true will not react on any user events and show disable icon o
   @Input() disabled: boolean;
 
 /*
-Events
-name : onSelection
-datatype : any
-version : none
+Properties
+name : required
+datatype : boolean
+version : 4.0 onwards
 default : none
-description :  Event fired on checkbox click.
+description :  property to set if manditory 
 */
   @Input() required: boolean;
 
@@ -62,7 +62,7 @@ name : onSelection
 datatype : any
 version : none
 default : none
-description :  Event fired on checkbox click.
+description : Event fired on checkbox click.
 */
   @Output() onSelection: any = new EventEmitter<any>();
   /*
@@ -71,7 +71,7 @@ name : input
 datatype : any
 version : none
 default : none
-description : 	On input event field.
+description : On input event field.
 */
   @Output() input: any = new EventEmitter<any>();
 

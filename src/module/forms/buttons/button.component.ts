@@ -41,10 +41,17 @@ name : type
 datatype : string
 version : 4.1 onwards
 default : none
-description : Type of button : default,theme-color,theme-backgroundcolor, green, red, yellow ( primary, secondary ,success , danger & warning Depricated v4.1 onwards)
+description : Type of button  default,theme-color,theme-backgroundcolor, green, red, yellow ( primary, secondary ,success , danger & warning Depricated v4.1 onwards)
 */
   @Input() type: string;
-
+   /*
+Properties 
+name : tooltip
+datatype : string
+version : 4.1 onwards
+default : none
+description : tooltip on button hover
+*/
   @Input() tooltip: string;
 
   /*

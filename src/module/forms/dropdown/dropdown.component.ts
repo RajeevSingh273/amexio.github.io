@@ -288,7 +288,7 @@ description : flag to set label
   @Input('has-label') haslabel: boolean = true;
   /*
 Properties 
-name : pattern
+name : enable-popover
 datatype : string
 version : 4.0 onwards
 default : none 
