@@ -158,7 +158,7 @@ textarea {
 textarea:disabled {
   opacity: 0.55;
   cursor: not-allowed;
-  background-color: #dbc2c6; }
+  background-color: #a09e9e; }
 
 /*
 The loading throbber is a single spinning element with three
