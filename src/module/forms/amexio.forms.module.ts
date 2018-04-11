@@ -34,7 +34,7 @@ import {AmexioLabelComponent} from "./label/label.component";
 import {HttpClientModule} from "@angular/common/http";
 import { AmexioFloatingButtonComponent } from './floatingbutton/floatingbutton.component';
 import { AmexioFloatingGroupButtonComponent } from './floatinggroupbutton/floatinggroupbutton.component';
-import { AmexioFormComponent } from './form/form.component';
+
 
 export * from '../services/data/common.data.service';
 export * from '../services/icon/icon.service';
@@ -67,8 +67,8 @@ const FORM_COMPONENTS = [
   AmexioFileUploadComponent,
   AmexioLabelComponent,
   AmexioFloatingButtonComponent,
-  AmexioFloatingGroupButtonComponent,
-  AmexioFormComponent
+  AmexioFloatingGroupButtonComponent
+
 ];
 
 @NgModule({

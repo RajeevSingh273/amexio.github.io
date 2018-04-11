@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit, AfterContentInit, QueryList, ViewChildren, ContentChildren } from "@angular/core";
+import { Component, OnInit, Input, EventEmitter,Output, AfterViewInit, AfterContentInit, QueryList, ViewChildren, ContentChildren } from "@angular/core";
 
 import { AmexioTextInputComponent } from "./../../forms/textinput/textinput.component";
 import { AmexioTextAreaComponent } from "./../../forms/textarea/textarea.component";
@@ -79,7 +79,7 @@ description : Align of item elements inside card footer example : right,center,l
 
     @Input('submit-button') btnlabel : string;
 
-    
+    @Output() onSubmit: any = new EventEmitter<any>();
     constructor(){
         this.isFormValid = false;
         this.headeralign = "left";
@@ -89,6 +89,8 @@ description : Align of item elements inside card footer example : right,center,l
     ngOnInit(){
 
     }
+
+
 
     isValid()
     {
@@ -227,6 +229,7 @@ description : Align of item elements inside card footer example : right,center,l
                  }
             });
         }
+        this.onSubmit.emit(this.isFormValid);
       }
-     
+
 }
