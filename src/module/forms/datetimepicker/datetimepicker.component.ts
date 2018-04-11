@@ -37,7 +37,7 @@ description : The label of this field
 
     /*
 Properties 
-name : 'date-picker
+name : date-picker
 datatype : boolean
 version : 4.0 onwards
 default : false

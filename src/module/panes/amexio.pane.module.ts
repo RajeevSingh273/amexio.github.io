@@ -29,7 +29,7 @@ import {AmexiodialoguePaneComponent} from "./dialogue/dialogue.pane.component";
 import {AmexioFormsModule} from "../forms/amexio.forms.module";
 import {AmexioPanelComponent} from "./panel/panel.component";
 import {HttpClientModule} from "@angular/common/http";
-
+import {AmexioFormComponent} from "./form/form.component"
 /*export * from './accordion/accordion.component';
 export * from './accordion/accordion.pane';
 
@@ -73,7 +73,8 @@ const PANE_COMPONENTS = [
   StepBlockComponent,
   AmexioPanelComponent,
   AmexioIconPane,
-  AmexiodialoguePaneComponent
+  AmexiodialoguePaneComponent,
+  AmexioFormComponent
 ];
 
 @NgModule({

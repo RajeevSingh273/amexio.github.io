@@ -1,0 +1,36 @@
+
+
+<div style="height: 300px;" *ngIf="mask">
+  <div class="spinner"></div>
+</div>
+<div class="inputgroup " *ngIf="!mask">
+  <div *ngIf="fieldlabel">
+    <label>{{fieldlabel}}</label>
+  </div>
+
+  <ng-container *ngIf="horizontal">
+    <ng-container *ngFor="let row of viewData">
+
+      <label class="input-box-container" [ngClass]="{'disable-component' : row?.disabled}" >{{row[displayfield]}}
+        <input type="checkbox" *ngIf="row[valuefield]" checked="checked" (click)="setSelectedCheckBox(row, $event)">
+        <input type="checkbox" *ngIf="!row[valuefield]" (click)="setSelectedCheckBox(row, $event)">
+        <span class="input-box-checkbox-label"></span>
+      </label>
+
+    </ng-container>
+  </ng-container>
+
+  <ng-container *ngIf="!horizontal">
+    <ng-container *ngFor="let row of viewData">
+      <div>
+        <label class="input-box-container">{{row[displayfield]}}
+          <input type="checkbox" *ngIf="row[valuefield]" checked="checked" (click)="setSelectedCheckBox(row, $event)">
+          <input type="checkbox" *ngIf="!row[valuefield]" (click)="setSelectedCheckBox(row, $event)">
+          <span class="input-box-checkbox-label"></span>
+        </label>
+      </div>
+
+    </ng-container>
+  </ng-container>
+
+</div>
