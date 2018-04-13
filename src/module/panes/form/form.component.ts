@@ -11,6 +11,8 @@ import { AmexioDropDownComponent } from "./../../forms/dropdown/dropdown.compone
 import { AmexioTypeAheadComponent} from "./../../forms/typeahead/typeahead.component"
 import { AmexioTagsInputComponent} from "./../../forms/tagsinput/tags.input.component"
 import { AmexioDateTimePicker} from "./../../forms/datetimepicker/datetimepicker.component"
+import { AmexioButtonComponent} from "./../../forms/buttons/button.component"
+import { AmexioFormActionComponent} from "./form.action.component"
 
 @Component({
     selector: 'amexio-form',
@@ -53,6 +55,11 @@ export class AmexioFormComponent implements OnInit, AfterViewInit, AfterContentI
     @ContentChildren(AmexioDateTimePicker) queryDate : QueryList<AmexioDateTimePicker>;
     datefiled: AmexioDateTimePicker[];  
     
+    buttons : AmexioButtonComponent[];
+    
+    @ContentChildren(AmexioFormActionComponent) queryFooter: QueryList<AmexioFormActionComponent>;
+    footer : AmexioFormActionComponent[];
+       
       /*
 Properties 
 name : header-align
@@ -72,14 +79,36 @@ default : none
 description : Align of item elements inside card footer example : right,center,left..
 */
     @Input('footer-align') footeralign: string;
-
+      /*
+Properties 
+name : form-name
+datatype : string
+version : 4.0 onwards
+default : none
+description : 
+*/
     @Input('form-name') fname : string;
-
+      /*
+Properties 
+name : form-header
+datatype : string
+version : 4.0 onwards
+default : none
+description : 
+*/  
     @Input('form-header') fheader : string;
-
-    @Input('submit-button') btnlabel : string;
+      /*
+Properties 
+name : show-error
+datatype : string
+version : 4.0 onwards
+default : none
+description : 
+*/
+    @Input('show-error') showError : boolean = false;
 
     @Output() onSubmit: any = new EventEmitter<any>();
+ 
     constructor(){
         this.isFormValid = false;
         this.headeralign = "left";
@@ -90,14 +119,8 @@ description : Align of item elements inside card footer example : right,center,l
 
     }
 
-
-
-    isValid()
-    {
-        return this.isFormValid;
-    }
-
     ngAfterViewInit(){
+        debugger;
         this.textinput = this.queryTextinput.toArray();
         this.textarea = this.queryTextArea.toArray();
         this.password = this.queryPassword.toArray();
@@ -109,6 +132,8 @@ description : Align of item elements inside card footer example : right,center,l
         this.typeahead = this.queryTypeahead.toArray();
         this.tags = this.queryTags.toArray();
         this.datefiled = this.queryDate.toArray();
+        
+        this.footer = this.queryFooter.toArray();
     }
 
     ngAfterContentInit(){
@@ -118,14 +143,15 @@ description : Align of item elements inside card footer example : right,center,l
     ngDoCheck(){
         this.checkFormvalidity();
     }
-    json : any [];
+
+    invalidFields :string;
 
     checkFormvalidity(){
         this.isFormValid = true;
-        this.json = [];
+        this.invalidFields = "";
         
         if(this.textinput && this.textinput.length>0){
-            this.textinput.forEach((c)=>{
+            this.textinput.forEach((c)=>{                
                  let flag = c.isComponentValid && c.isValid;
                  if(!flag && this.isFormValid)
                  {
@@ -133,6 +159,20 @@ description : Align of item elements inside card footer example : right,center,l
                  }
             });
         }
+        debugger;
+        if(this.footer  && this.footer.length>0){
+            this.footer.forEach((c)=>{
+                debugger;
+                this.buttons = this.footer[0].buttons;
+                this.buttons.forEach((c)=>{
+                    debugger;
+                    if(c.formbind == this.fname) {
+                    c.disabled = !this.isFormValid;
+                    }
+                });
+            });
+        }
+
         if(this.dropdown && this.dropdown.length>0){
             this.dropdown.forEach((c)=>{
                  let flag = c.isComponentValid;
@@ -229,7 +269,8 @@ description : Align of item elements inside card footer example : right,center,l
                  }
             });
         }
-        this.onSubmit.emit(this.isFormValid);
+  
+        //this.onSubmit.emit(this.isFormValid);
       }
 
 }

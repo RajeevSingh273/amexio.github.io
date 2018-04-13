@@ -79,6 +79,15 @@ description : Label on button
  For internal use
 */
   @Input() buttonGroupLocalData: any;
+/*
+Properties 
+name : form-bind
+datatype : string
+version : 4.1.6 onwards
+default : none
+description : to bind button to form
+*/
+@Input('form-bind') formbind: string;
 
     /*
 Properties 

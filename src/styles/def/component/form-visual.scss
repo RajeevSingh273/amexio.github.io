@@ -5,6 +5,11 @@
 
 }
 
+.form-error{
+  color :$formHeaderBGColor;
+  font-weight: bold;
+}
+
 .form-header{
   background: $formHeaderBGColor;
   color: $formHeaderColor;

@@ -71,6 +71,15 @@ default : none
 description : Type of button : default,theme-color,theme-backgroundcolor, green, red, yellow ( primary, secondary ,success , danger & warning Depricated v4.1 onwards)
 */
   @Input() type: string;
+/*
+Properties 
+name : form-bind
+datatype : string
+version : 4.1.6 onwards
+default : none
+description : to bind button to form
+*/
+@Input('form-bind') formbind: string;
 
   /*
 Properties 

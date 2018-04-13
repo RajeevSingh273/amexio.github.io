@@ -1,4 +1,5 @@
-Form Component {{isFormValid}}
+
+Form Component {{isFormValid}} 
 
 <form name="fname" (ngSubmit)="onSubmit()" class="form-container">
 
@@ -11,12 +12,12 @@ Form Component {{isFormValid}}
             <ng-content></ng-content>
         </amexio-body>
         
-        <!-- <amexio-action class="form-footer" 
+        <footer class="form-footer"
             [ngClass]="{'flex-start':(footeralign=='left'),'flex-end':(footeralign=='right'),'flex-center':(footeralign=='center')}">
-             <amexio-button [disabled]="!isFormValid" [label]="btnlabel" [type]="'primary'" [tooltip]="'Save'"></amexio-button>
-        </amexio-action> -->
-        <footer class="card-footer"
-[ngClass]="{'flex-start':(footeralign=='left'),'flex-end':(footeralign=='right'),'flex-center':(footeralign=='center')}">
-<ng-content select="amexio-action"></ng-content>
-</footer>
+            <ng-content select="amexio-form-action"></ng-content>
+            <br/>
+            <label *ngIf="showError" class="form-error">
+                    {{invalidFields}}
+            </label>
+        </footer>
 </form>

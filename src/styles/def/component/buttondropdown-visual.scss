@@ -6,3 +6,8 @@
 .button-dropdown > div:hover{
   background-color:$buttonDropdownHoverBG;
 }
+
+.button-dropdown:disabled {
+  background-color:$buttonDropdownDisableBG;
+  color : $buttonDropdownDisableFontColor;
+}

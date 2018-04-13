@@ -64,6 +64,16 @@ description : Enable/Disables the button
 */
   @Input() disabled: boolean;
 
+/*
+Properties 
+name : form-bind
+datatype : string
+version : 4.1.6 onwards
+default : none
+description : to bind button to form
+*/
+@Input('form-bind') formbind: string;
+
   /*
 Properties 
 name : size

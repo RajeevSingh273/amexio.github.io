@@ -498,6 +498,10 @@ button {
 .button-dropdown > div:hover {
   background-color: #c2b8ff; }
 
+.button-dropdown:disabled {
+  background-color: #c6c2db;
+  color: #6c62a3; }
+
 /** buttondropdown - Structure CSS **/
 .button-dropdown {
   position: absolute;
@@ -3308,6 +3312,10 @@ header .billboard .content-button {
 .form-container {
   background-color: #ffffff;
   color: #121212; }
+
+.form-error {
+  color: #7b68ee;
+  font-weight: bold; }
 
 .form-header {
   background: #7b68ee;

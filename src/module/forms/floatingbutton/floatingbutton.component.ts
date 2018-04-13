@@ -15,6 +15,16 @@ import { ElementRef } from '@angular/core';
   selector: 'amexio-floating-button', templateUrl: './floatingbutton.component.html'
 })
 export class AmexioFloatingButtonComponent implements OnInit{
+  /*
+Properties 
+name : form-bind
+datatype : string
+version : 4.1.6 onwards
+default : none
+description : to bind button to form
+*/
+@Input('form-bind') formbind: string;
+
 /*
 Properties 
 name : vertical-position
