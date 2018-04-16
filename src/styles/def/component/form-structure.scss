@@ -50,3 +50,28 @@
   display: flex;
   border-top: $formBorderSize solid $formBorderColor;
 }
+
+.form-tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.form-tooltip .form-tooltiptext {
+  visibility: hidden;
+  width: 150px;
+  background-color:$formTooltipBG;
+  color: $formTooltipColor;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  top: 100%;
+  left: 60%; 
+  margin-left: -100px; /* Use half of the width (120/2 = 60), to center the tooltip */
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.form-tooltip:hover .form-tooltiptext {
+  visibility: visible;
+}

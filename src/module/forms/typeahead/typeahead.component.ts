@@ -42,7 +42,7 @@ version : 4.0 onwards
 default : none 
 description : sets if field is required
 */
-  @Input('allow-blank') allowblank: string;
+  @Input('allow-blank') allowblank: boolean;
   /*
 Properties 
 name : data
@@ -158,6 +158,8 @@ description : On click event
   helpInfoMsg: string;
 
   _errormsg: string;
+
+  isComponentValid : boolean;
 
   get errormsg(): string {
     return this._errormsg;
@@ -304,6 +306,8 @@ description : sets the trigger char length
       this.placeholder = changes.placeholder.currentValue;
   }
   ngOnInit() {
+    
+    this.isComponentValid = this.allowblank;
     if (this.placeholder == '' || this.placeholder == null) this.placeholder = 'Choose Option';
 
     if (!this.triggerchar) {

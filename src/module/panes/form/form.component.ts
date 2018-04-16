@@ -107,8 +107,10 @@ description :
 */
     @Input('show-error') showError : boolean = false;
 
+    @Input('show-error-msg') showErrorMsgs : string = "Invalid Field";
+
     @Output() onSubmit: any = new EventEmitter<any>();
- 
+   
     constructor(){
         this.isFormValid = false;
         this.headeralign = "left";
@@ -144,12 +146,10 @@ description :
         this.checkFormvalidity();
     }
 
-    invalidFields :string;
-
+ 
     checkFormvalidity(){
         this.isFormValid = true;
-        this.invalidFields = "";
-        
+         
         if(this.textinput && this.textinput.length>0){
             this.textinput.forEach((c)=>{                
                  let flag = c.isComponentValid && c.isValid;
@@ -159,20 +159,17 @@ description :
                  }
             });
         }
-        debugger;
         if(this.footer  && this.footer.length>0){
             this.footer.forEach((c)=>{
-                debugger;
+
                 this.buttons = this.footer[0].buttons;
                 this.buttons.forEach((c)=>{
-                    debugger;
                     if(c.formbind == this.fname) {
                     c.disabled = !this.isFormValid;
                     }
                 });
             });
         }
-
         if(this.dropdown && this.dropdown.length>0){
             this.dropdown.forEach((c)=>{
                  let flag = c.isComponentValid;
@@ -183,19 +180,19 @@ description :
             });
         }
 
-        // if(this.typeahead && this.typeahead.length>0){
-        //     this.typeahead.forEach((c)=>{
-        //          let flag = c.isComponentValid;
-        //          if(!flag && this.isFormValid)
-        //          {
-        //             this.isFormValid = flag;
-        //          }
-        //     });
-        // }
+        if(this.typeahead && this.typeahead.length>0){
+            this.typeahead.forEach((c)=>{
+                 let flag = c.isComponentValid;
+                 if(!flag && this.isFormValid)
+                 {
+                    this.isFormValid = flag;
+                 }
+            });
+        }
         
         if(this.datefiled){
             this.datefiled.forEach((c)=>{
-                debugger;
+   
                 let flag;
                 if(c.selectedDate!=null) {
                     flag = true;
@@ -212,7 +209,7 @@ description :
                  if(!flag && this.isFormValid)
                  {
                     this.isFormValid = flag;
-                 }
+                }
             });
         }
         if(this.numinput && this.numinput.length>0){
@@ -257,6 +254,7 @@ description :
                  if(!flag && this.isFormValid)
                  {
                     this.isFormValid = flag;
+                    
                  }
             });
         }
@@ -269,8 +267,125 @@ description :
                  }
             });
         }
-  
-        //this.onSubmit.emit(this.isFormValid);
+          //this.onSubmit.emit(this.isFormValid);
       }
 
+      @Output() showErrorMsg: any = new EventEmitter<any>();
+
+      componentError:any[] = [];
+  
+      showErrors(event:any)
+      {
+          this.componentError= [];
+          if(this.showError)
+          {
+ 
+              if(this.textinput && this.textinput.length>0){
+                  this.textinput.forEach((c)=>{
+                      let flag = c.isComponentValid && c.isValid;
+                      if(!flag)
+                      {
+                        this.componentError.push(c.fieldlabel);  
+                      } 
+                  });
+              }
+              if(this.dropdown && this.dropdown.length>0){
+                this.dropdown.forEach((c)=>{
+                     let flag = c.isComponentValid;
+                     if(!flag)
+                     {
+                        this.componentError.push(c.fieldlabel);
+                     }
+                });
+            }    
+            if(this.typeahead && this.typeahead.length>0){
+                this.typeahead.forEach((c)=>{
+                     let flag = c.isComponentValid;
+                     if(!flag)
+                     {
+                        this.componentError.push(c.fieldlabel);
+                     }
+                });
+            }            
+            if(this.datefiled){
+                this.datefiled.forEach((c)=>{
+                   
+                    let flag;
+                    if(c.selectedDate!=null) {
+                        flag = true;
+                    }                
+                    if(!flag)
+                    {
+                        this.componentError.push(c.fieldlabel);
+                    }
+                });
+            }
+            if(this.tags && this.tags.length>0){
+                this.tags.forEach((c)=>{
+                     let flag = c.isComponentValid;
+                     if(!flag)
+                     {
+                        this.componentError.push(c.fieldlabel);
+                    }
+                });
+            }
+            if(this.numinput && this.numinput.length>0){
+                this.numinput.forEach((c)=>{
+                    let flag = c.isComponentValid && c.isValid;
+                     if(!flag)
+                     {
+                        this.componentError.push(c.fieldlabel);
+                     }
+                });
+            }
+           if(this.password && this.password.length>0){
+                this.password.forEach((c)=>{
+                    let flag = c.isComponentValid && c.isValid;
+                     if(!flag)
+                     {
+                        this.componentError.push(c.fieldlabel);
+                     }
+                });
+            }        
+            if(this.emailinput && this.emailinput.length>0){
+                this.emailinput.forEach((c)=>{
+                    let flag = c.isComponentValid && c.isValid;
+                     if(!flag)
+                     {
+                        this.componentError.push(c.fieldlabel);
+                     }
+                });
+            }
+            if(this.radio){
+                this.radio.forEach((c)=>{
+                    let flag = c.isComponentValid;
+                     if(!flag)
+                     {
+                        this.componentError.push(c.fieldlabel);
+                     }
+                });
+            }
+            if(this.chkBox){
+                this.chkBox.forEach((c)=>{
+                    let flag = c.isComponentValid;
+                     if(!flag)
+                     {
+                        this.componentError.push(c.fieldlabel);
+                        
+                     }
+                });
+            }
+            if(this.textarea && this.textarea.length>0){
+                this.textarea.forEach((c)=>{
+                    let flag = c.isComponentValid && c.isValid;
+                     if(!flag)
+                     {
+                        this.componentError.push(c.fieldlabel);
+                     }
+                });
+            }
+          }
+          this.showErrorMsg.emit(this.componentError);
+      }
+    
 }

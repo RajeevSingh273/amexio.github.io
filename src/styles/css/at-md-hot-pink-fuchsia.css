@@ -434,6 +434,10 @@ button {
   border-radius: 2px;
   transition: all .2s ease-in-out; }
 
+.button-round {
+  border-radius: 50%;
+  vertical-align: middle; }
+
 .button-text {
   display: inline-block; }
 
@@ -3371,6 +3375,29 @@ header .billboard .content-button {
 .form-footer {
   display: flex;
   border-top: 1px solid #ced4da; }
+
+.form-tooltip {
+  position: relative;
+  display: inline-block; }
+
+.form-tooltip .form-tooltiptext {
+  visibility: hidden;
+  width: 150px;
+  background-color: #ff6bff;
+  color: #1f001f;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  top: 100%;
+  left: 60%;
+  margin-left: -100px;
+  /* Use half of the width (120/2 = 60), to center the tooltip */
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1; }
+
+.form-tooltip:hover .form-tooltiptext {
+  visibility: visible; }
 
 /****************************************************************************
     Component Name : Carousel

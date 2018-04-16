@@ -17,6 +17,10 @@ button {
     transition: all .2s ease-in-out;
 }
 
+.button-round{
+    border-radius: 50%;
+    vertical-align: middle;
+}
 .button-text {
     display: inline-block;
 }
