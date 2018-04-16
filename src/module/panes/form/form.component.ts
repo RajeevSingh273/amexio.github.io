@@ -64,7 +64,7 @@ export class AmexioFormComponent implements OnInit, AfterViewInit, AfterContentI
 Properties 
 name : header-align
 datatype : string
-version : 4.0 onwards
+version : 4.2 onwards
 default : none
 description : Align of item elements inside card header example : right,center,left.
 */
@@ -74,7 +74,7 @@ description : Align of item elements inside card header example : right,center,l
 Properties 
 name : footer-align
 datatype :  string
-version : 4.0 onwards
+version : 4.2 onwards
 default : none
 description : Align of item elements inside card footer example : right,center,left..
 */
@@ -83,33 +83,47 @@ description : Align of item elements inside card footer example : right,center,l
 Properties 
 name : form-name
 datatype : string
-version : 4.0 onwards
+version : 4.2 onwards
 default : none
-description : 
+description : default name of form , also corresponds to form-bind for button
 */
     @Input('form-name') fname : string;
       /*
 Properties 
 name : form-header
 datatype : string
-version : 4.0 onwards
+version : 4.2 onwards
 default : none
-description : 
+description : form title to display
 */  
     @Input('form-header') fheader : string;
       /*
 Properties 
 name : show-error
-datatype : string
-version : 4.0 onwards
+datatype : boolean
+version : 4.2 onwards
 default : none
-description : 
+description : Flag to show form invalid error messages
 */
     @Input('show-error') showError : boolean = false;
-
+      /*
+Properties 
+name : show-error-msg
+datatype : string
+version : 4.2 onwards
+default : none
+description : show form invalid error messages
+*/
     @Input('show-error-msg') showErrorMsgs : string = "Invalid Field";
-
-    @Output() onSubmit: any = new EventEmitter<any>();
+  /*
+Events/**Depricated*
+name : onSubmit
+datatype : any
+version : none
+default : none
+description : Event fired on checkbox click.
+*/
+   // @Output() onSubmit: any = new EventEmitter<any>();
    
     constructor(){
         this.isFormValid = false;
@@ -269,7 +283,14 @@ description :
         }
           //this.onSubmit.emit(this.isFormValid);
       }
-
+  /*
+Events
+name : showErrorMsg
+datatype : any
+version : none
+default : none
+description : Event fired if showError msg info button is clicked
+*/
       @Output() showErrorMsg: any = new EventEmitter<any>();
 
       componentError:any[] = [];
@@ -385,7 +406,13 @@ description :
                 });
             }
           }
-          this.showErrorMsg.emit(this.componentError);
+          if(! this.isFormValid) {
+            this.showErrorMsg.emit(this.componentError);
+          } else {
+            this.showErrorMsgs = "Form Valid"
+            this.showErrorMsg.emit(this.componentError);
+            
+          }
       }
     
 }
